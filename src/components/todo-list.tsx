@@ -10,9 +10,12 @@ import { type Todo } from "@/lib/types";
 import { format } from "date-fns/format";
 
 export function TodoList() {
-  const [todos, setTodos] = useState<Todo[]>(() => {
-    const savedTodos = localStorage.getItem("todos");
-    return savedTodos ? JSON.parse(savedTodos) : [];
+    const [todos, setTodos] = useState<Todo[]>(() => {
+    if (typeof window !== "undefined") {
+      const savedTodos = localStorage.getItem("todos");
+      return savedTodos ? JSON.parse(savedTodos) : [];
+    }
+    return [];
   });
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -54,7 +57,11 @@ export function TodoList() {
 
   return (
     <div className="space-y-4">
-      <CalendarStrip handleSave={(date) => setSelectedDate(date.startValue)} />
+      <CalendarStrip handleSave={(date) => {
+        if (date.startValue !== null) {
+          setSelectedDate(date.startValue); 
+        }
+      }} />
       <div className="space-y-5 font-bold text-xl">
         {new Date().toLocaleDateString("en-CA") === formattedDate2
           ? "Today"

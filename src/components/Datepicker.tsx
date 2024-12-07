@@ -7,7 +7,6 @@ import {
   eachMonthOfInterval,
   startOfDay,
   isSameDay,
-  isBefore,
   isSameMonth,
   addMonths,
 } from "date-fns";
@@ -32,6 +31,9 @@ const NextIcon = () => (
     <polygon points="6.23,20.23 8,22 18,12 8,2 6.23,3.77 14.46,12" />
   </svg>
 );
+
+export type DatepickerEvent = [Date | null, Date | null, Date[] | null];
+
 
 export const Datepicker = forwardRef<HTMLDivElement, any>(
   ({ locale, startDate, endDate, onChange, startValue, endValue, disabledDates }, ref) => {
@@ -118,7 +120,7 @@ React.useEffect(() => {
                     const dayLabel = format(d, "EEEEEE", { locale });
                     const dateLabel = format(d, "dd", { locale });
                     const isDisabled = disabledDates?.some(
-                      (date) => startOfDay(date).getTime() === startOfDay(d).getTime()
+                      (date: any) => startOfDay(date).getTime() === startOfDay(d).getTime()
                     );
                     const isSelected =
                       startValue &&
@@ -167,4 +169,4 @@ React.useEffect(() => {
   }
 );
 
-
+Datepicker.displayName = "Datepicker";
