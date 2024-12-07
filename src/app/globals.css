@@ -1,0 +1,49 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+body {
+  font-family: Poppins, Helvetica, sans-serif;
+}
+
+.no-scroll {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;
+}
+
+.todo {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
+
+._3n.FC {
+  background: black!important;
+}
+
+
+.FC ._1g {
+  background-color: black!important;
+}
+
+.hidescroll {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;
+}
+
+.dateLabel {
+  align-self: flex-start;
+  z-index: 3;
+  position: sticky;
+  top: 0;
+  left: 0;
+  margin-left: 8px;
+  width: max-content;
+}
